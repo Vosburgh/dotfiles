@@ -2,7 +2,7 @@
 
 {
   # Add options for swaylock, lock screen for wayland
-  options.swaylock.enable = lib.mkEnableOption "swaylock.config";
+  options.swaylock.enable = lib.mkEnableOption "swaylock";
 
   # Configure swaylock if desired
   config = lib.mkIf config.swaylock.enable {

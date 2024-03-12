@@ -29,17 +29,21 @@
 
     hyprland-portal.url = "github:hyprwm/xdg-desktop-portal-hyprland";
   };
-  outputs = inputs: {
+  outputs = inputs@{ self, nixpkgs, home-manager, ... }:
+    let
+      inherit (self) outputs;
+    in
+    {
 
     # System configurations and modules
-    nixosModules = import ./nixos/modules inputs;
+    nixosModules = import ./nixos/modules;
 
     # Home-manager configurations and modules
-    homeModules = import ./home/modules inputs;
+    homeModules = import ./home/modules;
 
     nixosConfigurations = {
       artorias = inputs.nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
+        specialArgs = { inherit inputs outputs; };
         modules = [
           inputs.hyprland.nixosModules.default
           ./nixos/configurations/configuration.nix
@@ -50,6 +54,7 @@
     homeConfigurations = {
       "nick@artorias" = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = {inherit inputs outputs; };
         modules = [
           ./home/configurations/configuration.nix
           {

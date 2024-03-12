@@ -1,15 +1,18 @@
-{ config, pkgs, ... }:
+{ config, pkgs, outputs, ... }:
 {
 
     imports = [
-      ./../modules/hyprland/default.nix
-      ./../modules/gtk/default.nix
-      ./../modules/swaylock/default.nix
+      # ./../modules/hyprland/default.nix
+      # ./../modules/gtk/default.nix
+      # ./../modules/swaylock/default.nix
+      outputs.homeModules.gtk
+      outputs.homeModules.hyprland
+      outputs.homeModules.swaylock
     ];
 
   # Custom Modules
 
-  # gtk.config.enable = true;
+  gtk.config.enable = true;
   hyprland.enable = true;
   swaylock.enable = true;
 
@@ -50,6 +53,7 @@
       neofetch
       polkit_gnome
       wget
+      tree
       
     ];
   };

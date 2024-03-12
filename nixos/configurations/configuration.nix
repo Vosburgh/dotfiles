@@ -1,14 +1,13 @@
-{ inputs, config, lib, pkgs, ... }:
+{ inputs, config, lib, pkgs, outputs, ... }:
 
 {
 
   # Imports
   imports = [
-    ./../modules/hyprland.nix
-    ./../modules/kdePlasma6.nix
-    ./../modules/nixSettings.nix
-    ./../modules/steam.nix
-    ./../modules/mesa-git.nix
+    outputs.nixosModules.nixsettings
+    outputs.nixosModules.hyprland
+    outputs.nixosModules.kdeplasma6
+    outputs.nixosModules.steam
     ./bootloader.nix
     ./hardware-configuration.nix
   ];
@@ -74,16 +73,16 @@
     bluetooth.enable = true;
   };
 
-  # GPU Drivers.
-  boot.initrd.kernelModules = [ "amdgpu" ];
-  # hardware.opengl.extraPackages = with pkgs; [
-  #   amdvlk
-  # ];
-  hardware.opengl.enable = true;
-  services.xserver.videoDrivers = [ "amdgpu" ];
-  services.xserver.deviceSection = ''
-      Option "VariableRefresh" "true"
-    '';
+  # # GPU Drivers.
+  # boot.initrd.kernelModules = [ "amdgpu" ];
+  # # hardware.opengl.extraPackages = with pkgs; [
+  # #   amdvlk
+  # # ];
+  # hardware.opengl.enable = true;
+  # services.xserver.videoDrivers = [ "amdgpu" ];
+  # services.xserver.deviceSection = ''
+  #     Option "VariableRefresh" "true"
+  #   '';
   
 
   # Enable sound
@@ -181,7 +180,7 @@
     ];
   };
 
-    # Allow swaylock to work correctly
+  # Allow swaylock to work correctly
   security.pam.services.swaylock = {};
 
     # Get location from geoclue
