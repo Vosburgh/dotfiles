@@ -33,6 +33,7 @@
       git
       godot_4
       grimblast
+      htop
       killall
       kitty
       lutris
@@ -45,6 +46,7 @@
       starship
       swaybg
       swww
+      tmux
       vscodium
       waybar
 
@@ -54,7 +56,23 @@
       polkit_gnome
       wget
       tree
+
+      # Gaming shit
+      wineWowPackages.stable
       
+      # support 32-bit only
+      wine
+      
+      # support 64-bit only
+      wine64
+      
+      # winetricks (all versions)
+      winetricks
+
+      # native wayland support (unstable)
+      wineWowPackages.waylandFull
+
+
     ];
   };
   
@@ -79,6 +97,11 @@
         gcloud.disabled = true;
         line_break.disabled = true;
       };
+    };
+
+    tmux = {
+      enable = true;
+      mouse = true;
     };
 
     # Enable lazy git client

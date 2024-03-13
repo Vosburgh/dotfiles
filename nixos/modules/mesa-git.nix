@@ -33,11 +33,11 @@
     };
 
 
-    boot.initrd.kernelModules = [ "amdgpu" ];
+    # boot.initrd.kernelModules = [ "amdgpu" ];
     # hardware.opengl.extraPackages = with pkgs; [
     #   amdvlk
     # ];
-    services.xserver.videoDrivers = [ "amdgpu" ];
+    # services.xserver.videoDrivers = [ "amdgpu" ];
     services.xserver.deviceSection = ''
       Option "VariableRefresh" "true"
     '';

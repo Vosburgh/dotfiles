@@ -73,17 +73,58 @@
     bluetooth.enable = true;
   };
 
-  # # GPU Drivers.
-  # boot.initrd.kernelModules = [ "amdgpu" ];
-  # # hardware.opengl.extraPackages = with pkgs; [
-  # #   amdvlk
-  # # ];
-  # hardware.opengl.enable = true;
-  # services.xserver.videoDrivers = [ "amdgpu" ];
-  # services.xserver.deviceSection = ''
-  #     Option "VariableRefresh" "true"
-  #   '';
-  
+  # Mount NAS
+  # Does'nt work 
+  # fileSystems."/mnt/nasburgh" = {
+  #     device = "//192.168.50.137/volume1/data";
+  #     fsType = "cifs";
+  #     # options = [ 
+  #     #   "rw" 
+  #     #   "credentials=/etc/nixos/smb-secrets"
+  #     #   ];
+  #   options = [
+  #     "x-systemd.automount" 
+  #     "noauto" 
+  #     "x-systemd.idle-timeout=60"
+  #     "x-systemd.device-timeout=5s" 
+  #     "x-systemd.mount-timeout=5s"
+  #     "credentials=/etc/nixos/smb-secrets"
+  #     "uid=1000"
+  #     "gid=100"
+  #   ];
+  #   };
+
+  # Mount NAS
+  fileSystems."/mnt/nasburgh/data" = {
+    device = "192.168.50.137:/volume1/data";
+    fsType = "nfs";
+    options = [
+      "x-systemd.automount" 
+      "noauto" 
+      "x-systemd.idle-timeout=60"
+      "x-systemd.device-timeout=5s" 
+      "x-systemd.mount-timeout=5s"
+      # "credentials=/etc/nixos/smb-secrets"
+      # "uid=1000"
+      # "gid=100"
+    ];
+  };
+
+    fileSystems."/mnt/nasburgh/personal" = {
+    device = "192.168.50.137:/volume1/Personal";
+    fsType = "nfs";
+    options = [
+      "x-systemd.automount" 
+      "noauto" 
+      "x-systemd.idle-timeout=60"
+      "x-systemd.device-timeout=5s" 
+      "x-systemd.mount-timeout=5s"
+      # "credentials=/etc/nixos/smb-secrets"
+      # "uid=1000"
+      # "gid=100"
+    ];
+  };
+
 
   # Enable sound
   sound.enable = true;
@@ -106,11 +147,12 @@
   # Configure environment
   environment = {
     systemPackages = with pkgs; [
+      cifs-utils
+      keyutils
       git
       git-lfs
       kitty
       pavucontrol
-
     ];
   };
 
