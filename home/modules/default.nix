@@ -1,7 +1,7 @@
 {
   # btop = import ./btop inputs;
   # daw-plugins = import ./daw-plugins inputs;
-  # dunst = import ./dunst inputs;
+  dunst = import ./dunst ;
   # fcitx = import ./fcitx inputs;
   # firefox = import ./firefox inputs;
   gtk = import ./gtk ;

@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   # Configure bootloader
   boot = {

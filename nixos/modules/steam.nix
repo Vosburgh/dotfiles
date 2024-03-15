@@ -44,25 +44,5 @@
         ];
       };
     };
-
-    # Install tool for optimising games
-    environment.systemPackages = with pkgs; [
-      steam-run
-
-      # Gaming shit
-      wineWowPackages.stable
-      
-      # support 32-bit only
-      wine
-      
-      # support 64-bit only
-      wine64
-      
-      # winetricks (all versions)
-      winetricks
-
-      # native wayland support (unstable)
-      wineWowPackages.waylandFull
-    ];
   };
 }

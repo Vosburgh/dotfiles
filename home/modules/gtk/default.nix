@@ -12,6 +12,10 @@
     font = {
       name = "Fira Code 9";
     };
+    cursorTheme = {
+      name = "phinger-cursors";
+      package = pkgs.phinger-cursors;
+    };
     iconTheme = {
       name = "Pop";
       package = pkgs.pop-icon-theme;

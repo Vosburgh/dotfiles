@@ -143,7 +143,9 @@
     description = "Nick Vosburgh";
     extraGroups = [ "networkmanager" "wheel" ];
   };
-
+  
+  
+  
   # Configure environment
   environment = {
     systemPackages = with pkgs; [
@@ -153,6 +155,7 @@
       git-lfs
       kitty
       pavucontrol
+      wireguard-tools
     ];
   };
 

@@ -1,11 +1,12 @@
 { config, pkgs, outputs, ... }:
 {
-
     imports = [
+      ./../variables/theme
       # ./../modules/hyprland/default.nix
       # ./../modules/gtk/default.nix
       # ./../modules/swaylock/default.nix
       outputs.homeModules.gtk
+      outputs.homeModules.dunst
       outputs.homeModules.hyprland
       outputs.homeModules.swaylock
     ];
@@ -15,6 +16,7 @@
   gtk.config.enable = true;
   hyprland.enable = true;
   swaylock.enable = true;
+  dunst.enable = true;
 
   home = {
     username = "nick";
@@ -58,13 +60,9 @@
       tree
 
       # Gaming shit
-      wineWowPackages.stable
-      
-      # support 32-bit only
-      wine
       
       # support 64-bit only
-      wine64
+      # wine64
       
       # winetricks (all versions)
       winetricks
@@ -75,7 +73,7 @@
 
     ];
   };
-  
+
   nixpkgs.config = {
     allowUnfree = true;
   };
