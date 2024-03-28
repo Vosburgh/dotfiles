@@ -17,7 +17,7 @@
   hyprland.enable = true;
   kdePlasma6.enable = true;
   steam.enable = true;
-
+  
   # Define your hostname.
   networking.hostName = "artorias"; 
 
@@ -144,7 +144,13 @@
     extraGroups = [ "networkmanager" "wheel" ];
   };
   
-  
+  # Garbage collection
+  nix.gc = {
+  automatic = true;
+  dates = "daily";
+  options = "--delete-older-than 7d"; # Retain last 3 generations 
+};
+
   
   # Configure environment
   environment = {
@@ -232,7 +238,6 @@
     # TODO: Doesn't work
   location.provider = "geoclue2";
   
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

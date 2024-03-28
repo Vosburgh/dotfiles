@@ -10,15 +10,6 @@
     wayland.windowManager.hyprland = {
       enable = true;
       settings = {
-        # exec-once = [
-        #   "swww init & sleep 3 & swww img ~/Pictures/Backgrounds/SpiralGalaxyNGC628.png"
-        #   "waybar"
-        #   "nm-applet --indicator"
-        #   "polkit-agent-helper-1"
-        #   "systemctl start --user polkit-gnome-authentication-agent-1"
-        #   "dunst"
-        #   "hyprctl setcursor Nordic-cursors 24"
-        # ];
       };
       extraConfig = builtins.readFile ./hyprland.conf;
     };

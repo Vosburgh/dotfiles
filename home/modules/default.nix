@@ -15,8 +15,7 @@
   # obs-studio = import ./obs-studio inputs;
   # qt = import ./qt inputs;
   # rofi = import ./rofi inputs;
-  # starship = import ./starship inputs;
-  # sway = import ./sway inputs;
+  starship = import ./starship ;
   # swayidle = import ./swayidle inputs;
   swaylock = import ./swaylock ;
   # sway-notification-center = import ./sway-notification-center inputs;

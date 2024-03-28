@@ -9,6 +9,7 @@
       outputs.homeModules.dunst
       outputs.homeModules.hyprland
       outputs.homeModules.swaylock
+      outputs.homeModules.starship
     ];
 
   # Custom Modules
@@ -26,12 +27,14 @@
     packages = with pkgs; [
 
       # Programs
+      alacritty
       bitwarden
       blender
       btop
       discord
-      dolphin
+      libsForQt5.dolphin
       dunst
+      filelight
       git
       godot_4
       grimblast
@@ -40,11 +43,10 @@
       kitty
       lutris
       mangohud
-      gnome.nautilus
       neovim
       nwg-look
       pavucontrol
-      rofi
+      rofi-wayland
       starship
       swaybg
       swww
@@ -55,9 +57,11 @@
       # Utilities
       glxinfo
       neofetch
+      p7zip
       polkit_gnome
       wget
       tree
+      unzip
 
       # Gaming shit
       
@@ -89,12 +93,12 @@
     starship = {
       enable = true;
       # custom settings
-      settings = {
-        add_newline = false;
-        aws.disabled = true;
-        gcloud.disabled = true;
-        line_break.disabled = true;
-      };
+      # settings = {
+      #   add_newline = false;
+      #   aws.disabled = true;
+      #   gcloud.disabled = true;
+      #   line_break.disabled = true;
+      # };
     };
 
     tmux = {

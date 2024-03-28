@@ -41,7 +41,9 @@
     services.xserver.deviceSection = ''
       Option "VariableRefresh" "true"
     '';
-  
+    
+    # https://wiki.archlinux.org/title/AMDGPU#Boot_parameter
+    boot.kernelParams = [ "amdgpu.ppfeaturemask=0xfffd3fff" ];
     # Force RADV drivers
     environment.variables.AMD_VULKAN_ICD = "RADV";
   };

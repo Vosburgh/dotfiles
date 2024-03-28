@@ -7,7 +7,7 @@
   # Enable hyprland if desired
   config = lib.mkIf config.kdePlasma6.enable {
 
-    services.xserver.desktopManager.plasma6.enable = true;
+    services.desktopManager.plasma6.enable = true;
 
     environment.plasma6.excludePackages = with pkgs.kdePackages; [
       plasma-browser-integration
