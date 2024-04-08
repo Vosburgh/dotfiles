@@ -16,7 +16,7 @@
   # qt = import ./qt inputs;
   # rofi = import ./rofi inputs;
   starship = import ./starship ;
-  # swayidle = import ./swayidle inputs;
+  syncthing = import ./syncthing;
   swaylock = import ./swaylock ;
   # sway-notification-center = import ./sway-notification-center inputs;
   # themes = import ./themes inputs;

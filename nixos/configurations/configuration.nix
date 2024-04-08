@@ -159,9 +159,11 @@
       keyutils
       git
       git-lfs
+      just
       kitty
       pavucontrol
       wireguard-tools
+      xwaylandvideobridge
     ];
   };
 

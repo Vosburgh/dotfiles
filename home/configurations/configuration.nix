@@ -9,6 +9,7 @@
       outputs.homeModules.dunst
       outputs.homeModules.hyprland
       outputs.homeModules.swaylock
+      outputs.homeModules.syncthing
       outputs.homeModules.starship
     ];
 
@@ -17,6 +18,7 @@
   gtk.config.enable = true;
   hyprland.enable = true;
   swaylock.enable = true;
+  syncthing.enable = true;
   dunst.enable = true;
 
   home = {
@@ -34,6 +36,7 @@
       discord
       libsForQt5.dolphin
       dunst
+      element-desktop
       filelight
       git
       godot_4
@@ -44,13 +47,18 @@
       lutris
       mangohud
       neovim
+      nvtopPackages.amd
       nwg-look
+      obsidian
       pavucontrol
+      r2modman
       rofi-wayland
+      spotify
       starship
       swaybg
       swww
       tmux
+      vesktop
       vscodium
       waybar
 
