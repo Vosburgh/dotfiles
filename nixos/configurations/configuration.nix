@@ -4,10 +4,11 @@
 
   # Imports
   imports = [
-    outputs.nixosModules.nixsettings
     outputs.nixosModules.hyprland
+    outputs.nixosModules.nixsettings
     outputs.nixosModules.kdeplasma6
     outputs.nixosModules.steam
+    outputs.nixosModules.syncthing
     ./bootloader.nix
     ./hardware-configuration.nix
   ];
@@ -17,7 +18,8 @@
   hyprland.enable = true;
   kdePlasma6.enable = true;
   steam.enable = true;
-  
+  syncthing.enable = true;
+
   # Define your hostname.
   networking.hostName = "artorias"; 
 

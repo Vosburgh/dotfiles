@@ -9,10 +9,12 @@
 
     # Configure syncthing
     services = {
-      syncthing = {
-        enable = true;
-        tray.enable = true;
-      };
+        syncthing = {
+            enable = true;
+            user = "nick";
+            dataDir = "/home/nick/Documents";    # Default folder for new synced folders
+            configDir = "/home/nick/.config/syncthing";   # Folder for Syncthing's settings and keys
+        };
     };
 
   };

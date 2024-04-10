@@ -8,7 +8,7 @@
 
 window#waybar {
 
-    background-color: rgba(34, 36, 54, 0.6);
+    background-color: rgba(34, 36, 54, 0.4);
     /* border-bottom: 0px solid rgba(100, 114, 125, 0.5); */
     color: #ffffff;
     transition-property: background-color;
@@ -53,6 +53,7 @@ window#waybar.hidden {
     background-color: #64727D;
     border-bottom: 1px solid #ffffff;
 }
+
 
 #clock,
 #battery,
@@ -209,3 +210,11 @@ label:focus {
 #custom-audiorec {
     color: #c71585;
 }
+
+/* #custom-cava {
+    color: #8FBC8F;
+    border-left: 0px;
+    border-right: 0px;
+    padding-bottom: 6px;
+    font-size: 22px;
+} */

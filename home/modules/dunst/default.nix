@@ -73,15 +73,15 @@
         fullscreen_delay_everything = { fullscreen = "delay"; };
 
         urgency_critical = {
-          background = "#" + config.theme.colors.color1;
+          background = "#" + config.theme.colors.color1 + "55";
           foreground = "#" + config.theme.colors.color0;
         };
         urgency_low = {
-          background = "#" + config.theme.colors.alt-bg;
+          background = "#" + config.theme.colors.alt-bg + "55";
           foreground = "#" + config.theme.colors.alt-fg;
         };
         urgency_normal = {
-          background = "#" + config.theme.colors.alt-bg;
+          background = "#" + config.theme.colors.alt-bg + "55";
           foreground = "#" + config.theme.colors.alt-fg;
         };
       };

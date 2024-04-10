@@ -5,4 +5,5 @@
   mesa-git = import ./mesa-git.nix;
   nixsettings = import ./nixSettings.nix;
   steam = import ./steam.nix;
+  syncthing = import ./syncthing.nix;
 }

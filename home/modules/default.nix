@@ -11,17 +11,16 @@
   # mako = import ./mako inputs;
   # mangohud = import ./mangohud inputs;
   # mpv = import ./mpv inputs;
-  # neovim = import ./neovim inputs;
+  neovim = import ./neovim;
   # obs-studio = import ./obs-studio inputs;
   # qt = import ./qt inputs;
   # rofi = import ./rofi inputs;
   starship = import ./starship ;
-  syncthing = import ./syncthing;
   swaylock = import ./swaylock ;
   # sway-notification-center = import ./sway-notification-center inputs;
   # themes = import ./themes inputs;
   # vs-code = import ./vs-code inputs;
-  # waybar = import ./waybar ;
+  waybar = import ./waybar ;
   # wlogout = import ./wlogout inputs;
   # xdg = import ./xdg inputs;
 }

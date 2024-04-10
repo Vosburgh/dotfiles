@@ -10,6 +10,13 @@
         efiSupport = true;
         useOSProber = true;
       };
+      # grub2-theme = {
+      #   enable = true;
+      #   theme = "vimix";
+      #   icon = "color";
+      #   screen = "ultrawide2k";
+      # };
+
     };
   };
 }

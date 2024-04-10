@@ -21,5 +21,7 @@
       xwayland.enable = true;
       portalPackage = inputs.hyprland-portal.packages."x86_64-linux".xdg-desktop-portal-hyprland;
     };
+
+
   };
 } 

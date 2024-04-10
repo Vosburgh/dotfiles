@@ -2,15 +2,13 @@
 {
     imports = [
       ./../variables/theme
-      # ./../modules/hyprland/default.nix
-      # ./../modules/gtk/default.nix
-      # ./../modules/swaylock/default.nix
       outputs.homeModules.gtk
       outputs.homeModules.dunst
       outputs.homeModules.hyprland
       outputs.homeModules.swaylock
-      outputs.homeModules.syncthing
       outputs.homeModules.starship
+      outputs.homeModules.neovim
+      outputs.homeModules.waybar
     ];
 
   # Custom Modules
@@ -18,8 +16,10 @@
   gtk.config.enable = true;
   hyprland.enable = true;
   swaylock.enable = true;
-  syncthing.enable = true;
   dunst.enable = true;
+  starship.enable = true;
+  # neovim.enable = true;
+  waybar.enable = true;
 
   home = {
     username = "nick";
@@ -30,20 +30,20 @@
 
       # Programs
       alacritty
+      beeper
       bitwarden
       blender
       btop
-      discord
-      libsForQt5.dolphin
+      kdePackages.dolphin
       dunst
       element-desktop
-      filelight
       git
       godot_4
       grimblast
       htop
       killall
       kitty
+      lazygit
       lutris
       mangohud
       neovim
@@ -54,10 +54,9 @@
       r2modman
       rofi-wayland
       spotify
+      spotifyd
       starship
-      swaybg
       swww
-      tmux
       vesktop
       vscodium
       waybar
@@ -89,29 +88,15 @@
   nixpkgs.config = {
     allowUnfree = true;
   };
-
+  xdg.enable = true;
+  xdg.userDirs.enable = true;
+  xdg.userDirs.createDirectories = true;
+  
   programs = {
     git = {
       enable = true;
       userName = "Vosburgh";
       userEmail = "nickvosburghy@gmail.com";
-    };
-
-
-    starship = {
-      enable = true;
-      # custom settings
-      # settings = {
-      #   add_newline = false;
-      #   aws.disabled = true;
-      #   gcloud.disabled = true;
-      #   line_break.disabled = true;
-      # };
-    };
-
-    tmux = {
-      enable = true;
-      mouse = true;
     };
 
     # Enable lazy git client

@@ -1,4 +1,4 @@
-{ inputs, config, lib, pkgs, ... }:
+{ inputs, outputs, config, lib, pkgs, ... }:
 
 {
   # Add options for hyprland, a wayland window manager
@@ -27,10 +27,13 @@
         grim
         grimblast
 
+        # Allows mpd to work with playerctl
+        playerctl
+
         # Enable explicit use of xwayland compatibility layer
         xwayland
 
-        # Colour picker
+        # Colour pickerbackground blur
         hyprpicker
       ];
 
@@ -41,5 +44,28 @@
         XDG_SESSION_TYPE = "wayland";
       };
     };
+
+    # Waybar dependecies
+    services.mpd = {
+      enable = true;
+      musicDirectory = "${config.home.homeDirectory}/Music";
+      dataDir = "${config.home.homeDirectory}/.config/mpd";
+      extraConfig = ''
+        audio_output {
+          type "pipewire"
+          name "PipeWire Sound Server"
+        }
+      '';
+      network.startWhenNeeded = true;
+    };
+    
+    # Allows mpd to work with playerctl.
+    services.mpdris2.enable = true;
+    services.playerctld.enable = true;
+    
+    # systemd.services.mpd.environment = {
+    #   XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.userRunningPipeWire.uid}"; # User-id must match above user. MPD will look inside this directory for the PipeWire socket.
+    # };
+
   };
 }
