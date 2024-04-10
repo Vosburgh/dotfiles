@@ -211,10 +211,7 @@ label:focus {
     color: #c71585;
 }
 
-/* #custom-cava {
-    color: #8FBC8F;
-    border-left: 0px;
-    border-right: 0px;
-    padding-bottom: 6px;
-    font-size: 22px;
-} */
+#cava {
+    color: #bb9af7;
+    margin-right: 3px;
+}

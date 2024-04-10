@@ -20,22 +20,18 @@
 
             modules-left = [ 
               "custom/wmname" 
-              "hyprland/workspaces" 
-              "sway/mode" 
+              "hyprland/workspaces"
+              "custom/separator" 
+              "cava"
+              "custom/separator" 
               "cpu" 
               "custom/separator" 
               "memory" 
               "custom/separator" 
               "network" 
-              "custom/recorder" 
-              "custom/audiorec" 
               ];
             modules-center = [ 
-              "cava"
-              "custom/separator" 
               "hyprland/window" 
-              "custom/separator" 
-              "cava"
               ];
 
             modules-right = [ 
@@ -47,7 +43,7 @@
               "custom/separator" 
               "clock" 
               ];
-              
+
             "custom/wmname" = { format = ""; tooltip = false; };
             "hyprland/window" = { format = " {}"; separate-outputs = true; };
             "hyprland/workspaces" = {
@@ -161,12 +157,13 @@
             # };
             cava = {
               align = 1;
-              min-length = 35;
-              max-length = 35;
+              min-length = 28;
+              max-length = 28;
               tooltip = false;
               hide_on_silence = false;
-              framerate = 30;
-              bars = 10;
+              framerate = 120;
+              bars = 20;
+              monstercat = 1;
               # method = "pulse";
               # source = "auto";
               bar_delimiter = 0;
