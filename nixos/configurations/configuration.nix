@@ -5,7 +5,6 @@
   # Imports
   imports = [
     outputs.nixosModules.hyprland
-    outputs.nixosModules.nixsettings
     outputs.nixosModules.kdeplasma6
     outputs.nixosModules.steam
     outputs.nixosModules.syncthing
@@ -14,7 +13,6 @@
   ];
 
   # Custom Modules
-  nix.config.enable = true;
   hyprland.enable = true;
   kdePlasma6.enable = true;
   steam.enable = true;
@@ -38,16 +36,25 @@
     # Configure keymap in X11
     xkb.layout = "us";
     xkb.variant = "";
-    displayManager = {
-      sddm = {
-        enable = true;
-      };
-      defaultSession = "hyprland";
       #  autoLogin = {
       #    enable = true;
       #    user = "nick";
       #  };
     };
+  
+  services.displayManager = {
+      sddm = {
+        enable = true;
+      };
+      defaultSession = "hyprland";
+  };
+
+  nix.settings = {
+    # Enable flakes and 'nix' command
+    experimental-features = "nix-command flakes";
+
+    # Deduplicate and optimize nix store
+    auto-optimise-store = true;
   };
   
 
@@ -144,6 +151,7 @@
     isNormalUser = true;
     description = "Nick Vosburgh";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.zsh;
   };
   
   # Garbage collection
@@ -157,11 +165,11 @@
   # Configure environment
   environment = {
     systemPackages = with pkgs; [
+      brightnessctl
       cifs-utils
       keyutils
       git
       git-lfs
-      just
       kitty
       pavucontrol
       wireguard-tools
@@ -213,7 +221,20 @@
     # Needed for anything GTK
     dconf.enable = true;
 
+    zsh.enable = true;
+
+    thunar.enable = true;
+    thunar.plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-volman
+    ];
+    xfconf.enable = true;
+
+    # home-manager.enable = true;
   };
+  
+  services.gvfs.enable = true; # Mount, trash, and other functionalities
+  services.tumbler.enable = true; # Thumbnail support for images
 
   # Configure system-wide services
   services = {

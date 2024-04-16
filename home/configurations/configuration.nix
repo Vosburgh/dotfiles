@@ -1,4 +1,4 @@
-{ config, pkgs, outputs, ... }:
+{ config, inputs, pkgs, outputs, ... }:
 {
     imports = [
       ./../variables/theme
@@ -9,6 +9,8 @@
       outputs.homeModules.starship
       outputs.homeModules.neovim
       outputs.homeModules.waybar
+      outputs.homeModules.zsh
+      # inputs.nix-colors.homeModules.default
     ];
 
   # Custom Modules
@@ -20,6 +22,7 @@
   starship.enable = true;
   # neovim.enable = true;
   waybar.enable = true;
+  zsh.enable = true;
 
   home = {
     username = "nick";
@@ -44,22 +47,25 @@
       killall
       kitty
       lazygit
-      lutris
-      mangohud
-      neovim
-      nvtopPackages.amd
-      nwg-look
-      obsidian
-      pavucontrol
-      r2modman
+      lutris 
+      mangohud 
+      neovim  
+      nvtopPackages.amd 
+      nwg-look  
+      obsidian  
+      pavucontrol 
+      r2modman  
       rofi-wayland
       spotify
+      spotify-player
       spotifyd
       starship
       swww
       vesktop
       vscodium
       waybar
+
+      
 
       # Utilities
       glxinfo
@@ -70,11 +76,11 @@
       tree
       unzip
 
-      # Gaming shit
-      
-      # support 64-bit only
-      # wine64
-      
+      # Gaming
+      # Emulators
+      rpcs3   # ps3
+      xemu    # xbox 360
+
       # winetricks (all versions)
       winetricks
 

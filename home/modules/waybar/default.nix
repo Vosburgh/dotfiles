@@ -123,7 +123,7 @@
               "format-disconnected" = "Disconnected ⚠ {ifname}";
               "format-alt" = "󰛳  {ifname}: {ipaddr}/{cidr}";
             };
-            "pulseaudio" = {
+            pulseaudio = {
               "format" = "{icon}   {volume}%  {format_source}";
               "format-bluetooth" = "{icon} {volume}% {format_source}";
               "format-bluetooth-muted" = " {format_source}";

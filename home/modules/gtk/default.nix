@@ -21,9 +21,10 @@
 
   qt = {
       enable = true;
-      platformTheme = "qtct";
+      platformTheme = "gtk";
       style = {
-        name = "Otto";
+        name = "adwaita-dark";
+        package = pkgs.adwaita-qt;
       };
     };
 
@@ -49,12 +50,12 @@
       name = "Tokyonight-Dark-BL";
       package = pkgs.tokyo-night-gtk;
     };
-    # iconTheme = {
-    #   name = "TokyoNight-SE";
-    #   package = pkgs.gnome.tokyo-night-icons;
-    # };
-
     gtk3 = {
+      extraConfig = {
+        gtk-application-prefer-dark-theme = true;
+      };
+    };
+    gtk4 = {
       extraConfig = {
         gtk-application-prefer-dark-theme = true;
       };
@@ -63,10 +64,10 @@
     };
     home.sessionVariables = {
       GDK_BACKEND = "wayland";
-      QT_QPA_PLATFORMTHEME = "qt5ct";
-      QT_QPA_PLATFORM = "wayland";
-      QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-      QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+      # QT_QPA_PLATFORMTHEME = "qt5ct";
+      # QT_QPA_PLATFORM = "wayland";
+      # QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+      # QT_AUTO_SCREEN_SCALE_FACTOR = "1";
       };
   };
 }

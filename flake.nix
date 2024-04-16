@@ -2,6 +2,7 @@
   description = "A NickOS flake";
 
   inputs = {
+    # Nix 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     
     # Some serivces/programs defined here exist on NUR only.
@@ -10,10 +11,14 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # GPU Driver
     mesa-git = {
       url = "git+https://gitlab.freedesktop.org/mesa/mesa?ref=main";
       flake = false;
     };
+
+    # Hyprland
     hyprland = {
       url = "github:hyprwm/hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,8 +31,10 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
-
     hyprland-portal.url = "github:hyprwm/xdg-desktop-portal-hyprland";
+
+    # Misc
+    nix-colors.url = "github:misterio77/nix-colors";
   };
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
     let
