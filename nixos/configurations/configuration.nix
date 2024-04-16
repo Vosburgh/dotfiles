@@ -230,22 +230,22 @@
     ];
     xfconf.enable = true;
 
+    # Doesn't work anymore idk why
     # home-manager.enable = true;
   };
   
-  services.gvfs.enable = true; # Mount, trash, and other functionalities
-  services.tumbler.enable = true; # Thumbnail support for images
-
   # Configure system-wide services
   services = {
-    # Enable bluetooth support and device management (via bluetooth manager)
-    blueman.enable = true;
-
-    # Enable flatpak for non-nix packages (or temporary broken packages)
-    flatpak.enable = true;
+    blueman.enable = true; # Enable bluetooth support and device management (via bluetooth manager)
+   
+    flatpak.enable = true;  # Enable flatpak for non-nix packages (or temporary broken packages)
     
-    # Enable CUPS to print documents
-    printing.enable = true;
+    gvfs.enable = true; # Mount, trash, and other functionalities
+    tumbler.enable = true; # Thumbnail support for images
+    
+    tailscale.enable = true;
+    
+    printing.enable = true; # Enable CUPS to print documents
   };
   # Enable portals
   xdg.portal = {
