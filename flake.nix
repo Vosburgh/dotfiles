@@ -36,7 +36,7 @@
     # Misc
     nix-colors.url = "github:misterio77/nix-colors";
   };
-  outputs = inputs@{ self, nixpkgs, home-manager, ... }:
+  outputs = inputs@{ self, nixpkgs, nix-colors, home-manager, ... }:
     let
       inherit (self) outputs;
     in
@@ -50,7 +50,7 @@
 
     nixosConfigurations = {
       artorias = inputs.nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs outputs; };
+        specialArgs = { inherit inputs outputs nix-colors; };
         modules = [
           inputs.hyprland.nixosModules.default
           ./nixos/configurations/configuration.nix
@@ -61,7 +61,7 @@
     homeConfigurations = {
       "nick@artorias" = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs; };
+        extraSpecialArgs = {inherit inputs outputs nix-colors; };
         modules = [
           ./home/configurations/configuration.nix
           {

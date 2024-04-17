@@ -48,7 +48,7 @@
           #format = ''
           #  <span foreground='#${config.theme.colors.primary-bg}'><b>%s %p</b></span>
           #  %b'';
-          frame_color = "#" + config.theme.colors.bg;
+          frame_color = "#" + config.colorScheme.palette.base00;
           highlight = "#" + config.theme.colors.primary-bg;
           foreground = "#" + config.theme.colors.fg;
           frame_width = 1;

@@ -1,7 +1,7 @@
 { config, inputs, pkgs, outputs, ... }:
 {
     imports = [
-      ./../variables/theme
+      ./../options/theme
       outputs.homeModules.gtk
       outputs.homeModules.dunst
       outputs.homeModules.hyprland
