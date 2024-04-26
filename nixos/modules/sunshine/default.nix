@@ -7,15 +7,6 @@
   # Configure sunshine if desired
   config = lib.mkIf config.sunshine.enable {
 
-    # Configure sunshine
-    services = {
-        sunshine = {
-            enable = true;
-            user = "nick";
-            dataDir = "/home/nick/Documents";    # Default folder for new synced folders
-            configDir = "/home/nick/.config/sunshine";   # Folder for sunshine's settings and keys
-        };
-    };
     environment.systemPackages = with pkgs; [
       sunshine
     ];
@@ -26,6 +17,16 @@
         { from = 8000; to = 8010; }
       ];
 
+    systemd.user.services.sunshine = {
+      description = "Sunshine self-hosted game stream host for Moonlight";
+      startLimitBurst = 5;
+      startLimitIntervalSec = 500;
+      serviceConfig = {
+        ExecStart = "${config.security.wrapperDir}/sunshine";
+        Restart = "on-failure";
+        RestartSec = "5s";
+      };
+    };
 
   };
 }

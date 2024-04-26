@@ -32,11 +32,14 @@
       inputs.hyprland.follows = "hyprland";
     };
     hyprland-portal.url = "github:hyprwm/xdg-desktop-portal-hyprland";
+    hyprlock.url = "github:hyprwm/Hyprlock";
 
     # Misc
     nix-colors.url = "github:misterio77/nix-colors";
+    rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
+    catppuccin.url = "github:catppuccin/nix";
   };
-  outputs = inputs@{ self, nixpkgs, nix-colors, home-manager, ... }:
+  outputs = inputs@{ self, nixpkgs, nix-colors, catppuccin, home-manager, ... }:
     let
       inherit (self) outputs;
     in
@@ -61,7 +64,7 @@
     homeConfigurations = {
       "nick@artorias" = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs nix-colors; };
+        extraSpecialArgs = {inherit inputs outputs nix-colors catppuccin; };
         modules = [
           ./home/configurations/configuration.nix
           {
