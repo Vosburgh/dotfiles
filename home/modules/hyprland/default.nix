@@ -1,6 +1,9 @@
-{ inputs, outputs, config, lib, pkgs, ... }:
+{ inputs, catppuccin, outputs, config, lib, pkgs, ... }:
 
 {
+  imports = [
+      outputs.homeModules.hyprlock
+  ];
   # Add options for hyprland, a wayland window manager
   options.hyprland.enable = lib.mkEnableOption "hyprland";
 
@@ -15,7 +18,8 @@
     };
 
     # Allow swaylock to lock computer
-    swaylock.enable = true;
+    # swaylock.enable = true;
+    hyprlock.enable = true;
 
     # Extra wayland-specific home configuration
     home = {
@@ -35,14 +39,16 @@
 
         # Colour pickerbackground blur
         hyprpicker
+
+        hyprcursor
       ];
 
       # Specify desktop environment environment variables
-      sessionVariables = {
-        XDG_CURRENT_DESKTOP = "Hyprland";
-        XDG_SESSION_DESKTOP = "Hyprland";
-        XDG_SESSION_TYPE = "wayland";
-      };
+      # sessionVariables = {
+      #   XDG_CURRENT_DESKTOP = "Hyprland";
+      #   XDG_SESSION_DESKTOP = "Hyprland";
+      #   XDG_SESSION_TYPE = "wayland";
+      # };
     };
 
     # Waybar dependecies
@@ -62,7 +68,15 @@
     # Allows mpd to work with playerctl.
     services.mpdris2.enable = true;
     services.playerctld.enable = true;
-    
+    services = {
+      gammastep = {
+        enable = true;
+        provider = "manual";
+        tray = true;
+        latitude = 49.312916; 
+        longitude = -123.081454;
+      };
+    };
     # systemd.services.mpd.environment = {
     #   XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.userRunningPipeWire.uid}"; # User-id must match above user. MPD will look inside this directory for the PipeWire socket.
     # };

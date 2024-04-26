@@ -22,8 +22,6 @@
               "custom/wmname" 
               "hyprland/workspaces"
               "custom/separator" 
-              "cava"
-              "custom/separator" 
               "cpu" 
               "custom/separator" 
               "memory" 

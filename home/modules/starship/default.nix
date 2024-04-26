@@ -1,16 +1,5 @@
 { inputs, config, lib, pkgs, ... }:
-let colors = {
-  color_fg0 = "#fbf1c7";
-  color_bg1 = "#3c3836";
-  color_bg3 = "#665c54";
-  color_blue = "#458588";
-  color_aqua = "#689d6a";
-  color_green = "#98971a";
-  color_orange = "#d65d0e";
-  color_purple = "#b16286";
-  color_red = "#cc241d";
-  color_yellow = "#d79921";
-};
+let colorScheme = config.colorScheme.palette;
 in
 {
   # Add options for starship, a wayland window manager
@@ -29,18 +18,18 @@ in
           right_format = "$cmd_duration";
           add_newline = false;
           format = lib.concatStringsSep "" [
-            "[](${colors.color_orange})$os$username"
-            "[](bg:${colors.color_yellow} fg:${colors.color_orange})$directory"
-            "[](fg:${colors.color_yellow} bg:${colors.color_aqua})$git_branch$git_status"
-            "[](fg:${colors.color_aqua} bg:${colors.color_blue})$c$rust$golang$nodejs$php$java$kotlin$haskell$python"
-            "[](fg:${colors.color_blue} bg:${colors.color_bg3})$docker_context$conda"
-            "[](fg:${colors.color_bg3} bg:${colors.color_bg1})$time"
-            "[ ](fg:${colors.color_bg1})$line_break$character"
+            "[](#${config.colorScheme.palette.base08})$os$username"
+            "[](bg:#${config.colorScheme.palette.base0A} fg:#${config.colorScheme.palette.base08})$directory"
+            "[](fg:#${config.colorScheme.palette.base0A} bg:#${config.colorScheme.palette.base0B})$git_branch$git_status"
+            "[](fg:#${config.colorScheme.palette.base0B} bg:#${config.colorScheme.palette.base0C})$c$rust$golang$nodejs$php$java$kotlin$haskell$python"
+            "[](fg:#${config.colorScheme.palette.base0C} bg:#${config.colorScheme.palette.base03})$docker_context$conda"
+            "[](fg:#${config.colorScheme.palette.base03} bg:#${config.colorScheme.palette.base01})$time"
+            "[ ](fg:#${config.colorScheme.palette.base01})$line_break$character"
           ];
 
             os = {
               disabled = false;
-              style = "bg:${colors.color_orange} fg:${colors.color_fg0}";
+              style = "bg:#${config.colorScheme.palette.base08} fg:#${config.colorScheme.palette.base00}";
               symbols = {
                 Windows = "󰍲";
                 Ubuntu = "󰕈";
@@ -66,13 +55,13 @@ in
 
             username = {
               show_always = true;
-              style_user = "bg:${colors.color_orange} fg:${colors.color_fg0}";
-              style_root = "bg:${colors.color_orange} fg:${colors.color_fg0}";
+              style_user = "bg:#${config.colorScheme.palette.base08} fg:#${config.colorScheme.palette.base05}";
+              style_root = "bg:#${config.colorScheme.palette.base08} fg:#${config.colorScheme.palette.base05}";
               format = "[ \$user ](\$style)";
             };
 
             directory = {
-              style = "fg:${colors.color_fg0} bg:${colors.color_yellow}";
+              style = "fg:#${config.colorScheme.palette.base00} bg:#${config.colorScheme.palette.base0A}";
               format = "[ \$path ](\$style)";
               truncation_length = 3;
               truncation_symbol = "…/";
@@ -87,85 +76,85 @@ in
 
             git_branch = {
               symbol = "";
-              style = "bg:${colors.color_aqua}";
-              format = "[[ \$symbol \$branch ](fg:${colors.color_fg0} bg:${colors.color_aqua})](\$style)";
+              style = "bg:#${config.colorScheme.palette.base0B}";
+              format = "[[ \$symbol \$branch ](fg:#${config.colorScheme.palette.base00} bg:#${config.colorScheme.palette.base0B})](\$style)";
             };
 
             git_status = {
-              style = "bg:${colors.color_aqua}";
-              format = "[[(\$all_status\$ahead_behind )](fg:${colors.color_fg0} bg:${colors.color_aqua})](\$style)";
+              style = "bg:#${config.colorScheme.palette.base0B}";
+              format = "[[(\$all_status\$ahead_behind )](fg:#${config.colorScheme.palette.base00} bg:#${config.colorScheme.palette.base0B})](\$style)";
             };
 
             nodejs = {
               symbol = "";
-              style = "bg:${colors.color_blue}";
-              format = "[[ \$symbol( \$version) ](fg:${colors.color_fg0} bg:${colors.color_blue})](\$style)";
+              style = "bg:#${config.colorScheme.palette.base0C}";
+              format = "[[ \$symbol( \$version) ](fg:#${config.colorScheme.palette.base00} bg:#${config.colorScheme.palette.base0C})](\$style)";
             };
 
             c = {
               symbol = " ";
-              style = "bg:${colors.color_blue}";
-              format = "[[ \$symbol( \$version) ](fg:${colors.color_fg0} bg:${colors.color_blue})](\$style)";
+              style = "bg:#${config.colorScheme.palette.base0C}";
+              format = "[[ \$symbol( \$version) ](fg:#${config.colorScheme.palette.base00} bg:#${config.colorScheme.palette.base0C})](\$style)";
             };
 
             rust = {
               symbol = "";
-              style = "bg:${colors.color_blue}";
-              format = "[[ \$symbol( \$version) ](fg:${colors.color_fg0} bg:${colors.color_blue})](\$style)";
+              style = "bg:#${config.colorScheme.palette.base0C}";
+              format = "[[ \$symbol( \$version) ](fg:#${config.colorScheme.palette.base00} bg:#${config.colorScheme.palette.base0C})](\$style)";
             };
 
             golang = {
               symbol = "";
-              style = "bg:${colors.color_blue}";
-              format = "[[ \$symbol( \$version) ](fg:${colors.color_fg0} bg:${colors.color_blue})](\$style)";
+              style = "bg:#${config.colorScheme.palette.base0C}";
+              format = "[[ \$symbol( \$version) ](fg:#${config.colorScheme.palette.base00} bg:#${config.colorScheme.palette.base0C})](\$style)";
             };
 
             php = {
               symbol = "";
-              style = "bg:${colors.color_blue}";
-              format = "[[ \$symbol( \$version) ](fg:${colors.color_fg0} bg:${colors.color_blue})](\$style)";
+              style = "bg:#${config.colorScheme.palette.base0C}";
+              format = "[[ \$symbol( \$version) ](fg:#${config.colorScheme.palette.base00} bg:#${config.colorScheme.palette.base0C})](\$style)";
             };
 
             java = {
               symbol = " ";
-              style = "bg:${colors.color_blue}";
-              format = "[[ \$symbol( \$version) ](fg:${colors.color_fg0} bg:${colors.color_blue})](\$style)";
+              style = "bg:#${config.colorScheme.palette.base0C}";
+              format = "[[ \$symbol( \$version) ](fg:#${config.colorScheme.palette.base00} bg:#${config.colorScheme.palette.base0C})](\$style)";
             };
 
             kotlin = {
               symbol = "";
-              style = "bg:${colors.color_blue}";
-              format = "[[ \$symbol( \$version) ](fg:${colors.color_fg0} bg:${colors.color_blue})](\$style)";
+              style = "bg:#${config.colorScheme.palette.base0C}";
+              format = "[[ \$symbol( \$version) ](fg:#${config.colorScheme.palette.base00} bg:#${config.colorScheme.palette.base0C})](\$style)";
             };
 
             haskell = {
               symbol = "";
-              style = "bg:${colors.color_blue}";
-              format = "[[ \$symbol( \$version) ](${colors.color_fg0} bg:${colors.color_blue})](\$style)";
+              style = "bg:#${config.colorScheme.palette.base0C}";
+              format = "[[ \$symbol( \$version) ](#${config.colorScheme.palette.base00} bg:#${config.colorScheme.palette.base0C})](\$style)";
             };
 
             python = {
               symbol = "";
-              style = "bg:${colors.color_blue}";
-              format = "[[ \$symbol( \$version) ](fg:${colors.color_fg0} bg:${colors.color_blue})](\$style)";
+              style = "bg:#${config.colorScheme.palette.base0C}";
+              format = "[[ \$symbol( \$version) ](fg:#${config.colorScheme.palette.base00} bg:#${config.colorScheme.palette.base0C})](\$style)";
             };
 
             docker_context = {
               symbol = "";
-              style = "bg:${colors.color_bg3}";
-              format = "[[ \$symbol( \$context) ](fg:${colors.color_fg0} bg:${colors.color_bg3})](\$style)";
+              style = "bg:#${config.colorScheme.palette.base03}";
+              format = "[[ \$symbol( \$context) ](fg:#${config.colorScheme.palette.base00} bg:#${config.colorScheme.palette.base03})](\$style)";
             };
 
             conda = {
-              style = "bg:${colors.color_bg3}";
-              format = "[[ \$symbol( \$environment) ](fg:${colors.color_fg0} bg:${colors.color_bg3})](\$style)";
+              style = "bg:#${config.colorScheme.palette.base03}";
+              format = "[[ \$symbol( \$environment) ](fg:#${config.colorScheme.palette.base00} bg:#${config.colorScheme.palette.base03})](\$style)";
             };
 
             time = {
               disabled = false;
               time_format = "%R";
-              style = "bg:${colors.color_bg1}";
-              format = "[[  \$time ](fg:${colors.color_fg0} bg:${colors.color_bg1})](\$style)";
+              style = "bg:#${config.colorScheme.palette.base01}";
+              format = "[[  \$time ](fg:#${config.colorScheme.palette.base05} bg:#${config.colorScheme.palette.base01})](\$style)";
             };
 
             line_break = {
@@ -174,89 +163,13 @@ in
 
             character = {
               disabled = false;
-              success_symbol = "[](bold fg:${colors.color_green})";
-              error_symbol = "[](bold fg:${colors.color_red})";
-              vimcmd_symbol = "[](bold fg:${colors.color_green})";
-              vimcmd_replace_one_symbol = "[](bold fg:${colors.color_purple})";
-              vimcmd_replace_symbol = "[](bold fg:${colors.color_purple})";
-              vimcmd_visual_symbol = "[](bold fg:${colors.color_yellow})";
+              success_symbol = "[](bold fg:#${config.colorScheme.palette.base0B})";
+              error_symbol = "[](bold fg:#${config.colorScheme.palette.base08})";
+              vimcmd_symbol = "[](bold fg:#${config.colorScheme.palette.base0B})";
+              vimcmd_replace_one_symbol = "[](bold fg:#${config.colorScheme.palette.base0E})";
+              vimcmd_replace_symbol = "[](bold fg:#${config.colorScheme.palette.base0E})";
+              vimcmd_visual_symbol = "[](bold fg:#${config.colorScheme.palette.base0A})";
             };
-
-
-
-
-          # palette = "tokyonight";
-          # palettes.tokyonight = {
-          #   green = "#73daca";
-          #   red = "#f7768e";
-          #   black = "#414868";
-          #   yellow = "#e0af68";
-          #   blue = "#7aa2f7";
-          #   magenta = "#bb9af7";
-          #   cyan = "#7dcfff";
-          #   white = "#c0caf5";
-          # };
-          # username = {
-          #   show_always = true;
-          #   format = "[$user@]($style)";
-          #   style_user = "magenta";
-          # };
-          # hostname = {
-          #   ssh_only = false;
-          #   style = "magenta";
-          # };
-          # directory = {
-          #   truncation_length = 8;
-          #   truncation_symbol = ".../";
-          #   style = "cyan";
-          # };
-          # shell = {
-          #   disabled = false;
-          #   fish_indicator = "[󰈺](green)"; # Use nerd font symbols
-          #   bash_indicator = "[](green)";
-          #   zsh_indicator = "[󰞷](green)";
-          # };
-          # os = {
-          #   disabled = false;
-          #   symbols = {
-          #     Arch = "[󰣇](blue) ";
-          #     EndeavourOS = "[󰣇](blue) ";
-          #     NixOS = "[](blue) ";
-          #   };
-          # };
-          # line_break.disabled = true;
-          # character.error_symbol = "[✗](bold red) ";
-          # fill.symbol = " ";
-          # custom.date = {
-          #   command = "date +%a' '%b' '%d' '%H:%M:%S";
-          #   when = true;
-          #   style = "magenta";
-          # };
-
-          # directory = {
-          #   format = "[ ](bold #89b4fa)[ $path ]($style)";
-          #   style = "bold #b4befe";
-          # };
-
-          # character = {
-          #   success_symbol = "[ ](bold #89b4fa)[ ➜](bold green)";
-          #   error_symbol = "[ ](bold #89b4fa)[ ➜](bold red)";
-          #   # error_symbol = "[ ](bold #89dceb)[ ✗](bold red)";
-          # };
-
-          # cmd_duration = {
-          #   format = "[]($style)[[󰔚 ](bg:#161821 fg:#d4c097 bold)$duration](bg:#161821 fg:#BBC3DF)[ ]($style)";
-          #   disabled = false;
-          #   style = "bg:none fg:#161821";
-          # };        
-
-          # directory.substitutions = {
-            # "~" = "󰋞";
-            # "Documents" = " ";
-            # "Downloads" = " ";
-            # "Music" = " ";
-            # "Pictures" = " ";
-          # };
       };
     };
   };

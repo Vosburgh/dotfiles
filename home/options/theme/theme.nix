@@ -1,33 +1,33 @@
-{ nix-colors, ... }:
+{ inputs, nix-colors, ... }:
 {
   imports = [
     nix-colors.homeManagerModule
   ];
-  colorScheme = {
-    slug = "pasque";
-    name = "Pasque";
-    palette = { 
-      # Use Flutter Color vscode extension to see color preview
-      base00 = "#271C3A";
-      base01 = "#100323";
-      base02 = "#3E2D5C";
-      base03 = "#5D5766";
-      base04 = "#BEBCBF";
-      base05 = "#DEDCDF";
-      base06 = "#EDEAEF";
-      base07 = "#BBAADD";
-      base08 = "#A92258";
-      base09 = "#918889";
-      base0A = "#804ead";
-      base0B = "#C6914B";
-      base0C = "#7263AA";
-      base0D = "#8E7DC6";
-      base0E = "#953B9D";
-      base0F = "#59325C";
-    };
-  };
-}
+  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-macchiato;
 
+  # colorScheme = {
+  #   slug = "kanagawa";
+  #   name = "kanagawa";
+  #   palette = {
+  #     base00 = "#1F1F28";
+  #     base01 = "#2A2A37";
+  #     base02 = "#223249";
+  #     base03 = "#727169";
+  #     base04 = "#C8C093";
+  #     base05 = "#DCD7BA";
+  #     base06 = "#938AA9";
+  #     base07 = "#363646";
+  #     base08 = "#C34043";
+  #     base09 = "#FFA066";
+  #     base0A = "#DCA561";
+  #     base0B = "#98BB6C";
+  #     base0C = "#7FB4CA";
+  #     base0D = "#7E9CD8";
+  #     base0E = "#957FB8";
+  #     base0F = "#D27E99";
+  #   };
+  # };
+}
 
 # Stole this from some nerd
 # colors = {

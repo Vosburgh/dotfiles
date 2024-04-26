@@ -40,17 +40,17 @@
           sticky_history = "yes";
           history_length = 20;
           always_run_script = true;
-          corner_radius = config.theme.rounding;
+          corner_radius = 12;
           follow = "mouse";
-          font = config.theme.font;
+          font = "Fira Code 9";
           format = "<b>%s</b>\\n%b";
-          progress_bar_corner_radius = config.theme.rounding - 10;
+          progress_bar_corner_radius = 12 - 10;
           #format = ''
           #  <span foreground='#${config.theme.colors.primary-bg}'><b>%s %p</b></span>
           #  %b'';
           frame_color = "#" + config.colorScheme.palette.base00;
-          highlight = "#" + config.theme.colors.primary-bg;
-          foreground = "#" + config.theme.colors.fg;
+          highlight = "#" + config.colorScheme.palette.base0E;
+          foreground = "#" + config.colorScheme.palette.base05;
           frame_width = 1;
           offset = "0x10";
           horizontal_padding = 10;
@@ -73,16 +73,21 @@
         fullscreen_delay_everything = { fullscreen = "delay"; };
 
         urgency_critical = {
-          background = "#" + config.theme.colors.color1 + "55";
-          foreground = "#" + config.theme.colors.color0;
+          background = "#" + config.colorScheme.palette.base08 + "55";
+          foreground = "#" + config.colorScheme.palette.base00;
+          timeout = 0;
         };
         urgency_low = {
-          background = "#" + config.theme.colors.alt-bg + "55";
-          foreground = "#" + config.theme.colors.alt-fg;
+          background = "#" + config.colorScheme.palette.base01 + "55";
+          foreground = "#" + config.colorScheme.palette.base05;
+          timeout = 10;
+
         };
         urgency_normal = {
-          background = "#" + config.theme.colors.alt-bg + "55";
-          foreground = "#" + config.theme.colors.alt-fg;
+          background = "#" + config.colorScheme.palette.base01 + "55";
+          foreground = "#" + config.colorScheme.palette.base05;
+          timeout = 10;
+
         };
       };
     };

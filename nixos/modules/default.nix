@@ -4,4 +4,5 @@
   mesa-git = import ./mesa-git;
   steam = import ./steam;
   syncthing = import ./syncthing;
+  sunshine = import ./sunshine;
 }

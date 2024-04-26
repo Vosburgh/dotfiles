@@ -92,7 +92,7 @@ window#waybar.hidden {
 }
 
 #clock {
-    color: #90ee90;
+    color: #98BB6C
 }
 
 #battery {
@@ -116,11 +116,11 @@ label:focus {
 }
 
 #cpu {
-    color: #ff7a93;
+    color: #938AA9
 }
 
 #memory {
-    color: #86e2d5;
+    color: #7FB4CA;
 }
 
 #backlight {
@@ -128,19 +128,19 @@ label:focus {
 }
 
 #network {
-    color: #ff9e64;
+    color: #FFA066;
 }
 
 #network.disconnected {
-    color: #df3320;
+    color: #C34043;
 }
 
 #pulseaudio {
-    color: #bb9af7;
+    color: #7E9CD8;
 }
 
 #pulseaudio.muted {
-    color: #a0a0a0;
+    color: #957FB8;
 }
 
 #custom-power {

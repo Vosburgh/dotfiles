@@ -1,29 +1,32 @@
 { config, inputs, pkgs, outputs, ... }:
 {
-    imports = [
-      ./../options/theme
-      outputs.homeModules.gtk
-      outputs.homeModules.dunst
-      outputs.homeModules.hyprland
-      outputs.homeModules.swaylock
-      outputs.homeModules.starship
-      outputs.homeModules.neovim
-      outputs.homeModules.waybar
-      outputs.homeModules.zsh
-      # inputs.nix-colors.homeModules.default
-    ];
+  imports = [
+    ./../options/theme
+    outputs.homeModules.gtk
+    outputs.homeModules.dunst
+    outputs.homeModules.hyprland
+    # outputs.homeModules.hyprlock
+    outputs.homeModules.swaylock
+    outputs.homeModules.starship
+    outputs.homeModules.neovim
+    outputs.homeModules.waybar
+    outputs.homeModules.zsh
+    # inputs.nix-colors.homeModules.default
+  ];
 
   # Custom Modules
 
   gtk.config.enable = true;
   hyprland.enable = true;
-  swaylock.enable = true;
+  # hyprlock.enable = true;
+  # swaylock.enable = true;
   dunst.enable = true;
   starship.enable = true;
   # neovim.enable = true;
   waybar.enable = true;
   zsh.enable = true;
-
+  lazygit.enable = true;
+  
   home = {
     username = "nick";
     homeDirectory = "/home/nick";
@@ -46,7 +49,7 @@
       htop
       killall
       kitty
-      lazygit
+      
       lutris 
       mangohud 
       neovim  
@@ -68,11 +71,17 @@
       
 
       # Utilities
+      bat
+      delta
+      eza
+      fzf
       glxinfo
+      ncdu
       neofetch
       p7zip
       polkit_gnome
       wget
+      wev # wayland event viewer
       tree
       unzip
 
@@ -118,14 +127,10 @@
   };
 
   services = {
-    gammastep = {
+    kdeconnect = {
       enable = true;
-      provider = "manual";
-      tray = true;
-      latitude = 49.312916; 
-      longitude = -123.081454;
+      indicator = true;
     };
-
 
   };
 }
