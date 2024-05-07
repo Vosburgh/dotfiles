@@ -8,9 +8,9 @@
 
 window#waybar {
 
-    background-color: rgba(34, 36, 54, 0.4);
+    background: rgba(34, 36, 54, 0.4);
     /* border-bottom: 0px solid rgba(100, 114, 125, 0.5); */
-    color: #ffffff;
+    color: @text;
     transition-property: background-color;
     transition-duration: .5s;
     border-radius: 4px;
@@ -24,7 +24,7 @@ window#waybar.hidden {
     padding: 0px;
     margin: 4px 0 6px 0;
     background-color: transparent;
-    color: #ffffff;
+    color: @text;
     min-width: 36px;
 }
 

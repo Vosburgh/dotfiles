@@ -38,10 +38,6 @@
     # Configure keymap in X11
     xkb.layout = "us";
     xkb.variant = "";
-      #  autoLogin = {
-      #    enable = true;
-      #    user = "nick";
-      #  };
     };
   
   services.displayManager = {
@@ -54,7 +50,6 @@
   nix.settings = {
     # Enable flakes and 'nix' command
     experimental-features = "nix-command flakes";
-
     # Deduplicate and optimize nix store
     auto-optimise-store = true;
   };
@@ -62,21 +57,6 @@
 
   #Polkit
   security.polkit.enable = true;
-  # systemd = { 
-  #   user.services.polkit-gnome-authentication-agent-1 = {
-  #     description = "polkit-gnome-authentication-agent-1";
-  #     wantedBy = ["graphical-session.target"];
-  #     wants = ["graphical-session.target"];
-  #     after = ["graphical-session.target"];
-  #     serviceConfig = {
-  #       Type = "simple";
-  #       ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-  #       Restart = "on-failure";
-  #       RestartSec = 1;
-  #       TimeoutStopSec = 10;
-  #       };
-  #     };
-  # };
     systemd = { 
     user.services.polkit-kde-authentication-agent-1 = {
       description = "polkit-kde-authentication-agent-1";
@@ -101,27 +81,6 @@
   };
 
   # Mount NAS
-  # Does'nt work 
-  # fileSystems."/mnt/nasburgh" = {
-  #     device = "//192.168.50.137/volume1/data";
-  #     fsType = "cifs";
-  #     # options = [ 
-  #     #   "rw" 
-  #     #   "credentials=/etc/nixos/smb-secrets"
-  #     #   ];
-  #   options = [
-  #     "x-systemd.automount" 
-  #     "noauto" 
-  #     "x-systemd.idle-timeout=60"
-  #     "x-systemd.device-timeout=5s" 
-  #     "x-systemd.mount-timeout=5s"
-  #     "credentials=/etc/nixos/smb-secrets"
-  #     "uid=1000"
-  #     "gid=100"
-  #   ];
-  #   };
-
-  # Mount NAS
   fileSystems."/mnt/nasburgh/data" = {
     device = "192.168.50.137:/volume1/data";
     fsType = "nfs";
@@ -131,13 +90,10 @@
       "x-systemd.idle-timeout=60"
       "x-systemd.device-timeout=5s" 
       "x-systemd.mount-timeout=5s"
-      # "credentials=/etc/nixos/smb-secrets"
-      # "uid=1000"
-      # "gid=100"
     ];
   };
 
-    fileSystems."/mnt/nasburgh/personal" = {
+  fileSystems."/mnt/nasburgh/personal" = {
     device = "192.168.50.137:/volume1/Personal";
     fsType = "nfs";
     options = [
@@ -146,9 +102,6 @@
       "x-systemd.idle-timeout=60"
       "x-systemd.device-timeout=5s" 
       "x-systemd.mount-timeout=5s"
-      # "credentials=/etc/nixos/smb-secrets"
-      # "uid=1000"
-      # "gid=100"
     ];
   };
 
@@ -176,7 +129,7 @@
   nix.gc = {
   automatic = true;
   dates = "daily";
-  options = "--delete-older-than 7d"; # Retain last 3 generations 
+  options = "--delete-older-than 7d"; 
 };
 
   
@@ -185,11 +138,10 @@
     systemPackages = with pkgs; [
       brightnessctl
       cifs-utils
-      keyutils
+      fuse
       git
       git-lfs
-      kitty
-      pavucontrol
+      keyutils
       wireguard-tools
       xwaylandvideobridge
     ];
@@ -246,10 +198,8 @@
       thunar-archive-plugin
       thunar-volman
     ];
-    xfconf.enable = true;
 
-    # Doesn't work anymore idk why
-    # home-manager.enable = true;
+    xfconf.enable = true;
   };
   
   # Configure system-wide services
@@ -265,6 +215,10 @@
     
     printing.enable = true; # Enable CUPS to print documents
   };
+
+  # Virtualisation enable
+  virtualisation.virtualbox.host.enable = true;
+
   # Enable portals
   xdg.portal = {
     enable = true;

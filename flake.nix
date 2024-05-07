@@ -20,7 +20,8 @@
 
     # Hyprland
     hyprland = {
-      url = "github:hyprwm/hyprland";
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+      # url = "github:hyprwm/hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprwm-contrib = {
@@ -36,7 +37,6 @@
 
     # Misc
     nix-colors.url = "github:misterio77/nix-colors";
-    rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
     catppuccin.url = "github:catppuccin/nix";
   };
   outputs = inputs@{ self, nixpkgs, nix-colors, catppuccin, home-manager, ... }:
@@ -66,6 +66,7 @@
         pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs nix-colors catppuccin; };
         modules = [
+          
           ./home/configurations/configuration.nix
           {
             home = {

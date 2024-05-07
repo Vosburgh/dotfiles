@@ -9,14 +9,14 @@
       programs.waybar = {
         enable = true;
         systemd.enable = true;
-        style = (builtins.readFile ./awe/style.css);
+        style = builtins.readFile ./awe/style.css;
         settings = {
           mainBar = {
             layer = "top";
             position = "top";
             height = 34;
             width = 3440;
-            margin = "3, 0, 2, 0";
+            margin = "0, 0, 2, 0";
 
             modules-left = [ 
               "custom/wmname" 
@@ -43,9 +43,11 @@
               ];
 
             "custom/wmname" = { format = ""; tooltip = false; };
-            "hyprland/window" = { format = " {}"; separate-outputs = true; };
+            "hyprland/window" = { format = "{}"; separate-outputs = true; };
             "hyprland/workspaces" = {
               format = "{icon}";
+              "all-outputs" = false;
+              "active-only" = false;
               "on-scroll-up" = "hyprctl dispatch workspace e+1";
               "on-scroll-down" = "hyprctl dispatch workspace e-1";  
               "persistent-workspaces" = { "*" = 5; };
@@ -113,14 +115,25 @@
               "on-click" = "kitty -e 'btop'";
             };
 
+            # network = {
+            #   "format-wifi" = "{essid}  ({signalStrength}%)  ";
+            #   "format-ethernet" = "󰈀  {ifname}";
+            #   "tooltip-format" = "󰔣  {ifname} via {gwaddr}";
+            #   "format-linked" = "󰱓  {ifname} (No IP)";
+            #   "format-disconnected" = "Disconnected ⚠ {ifname}";
+            #   "format-alt" = "󰛳  {ifname}: {ipaddr}/{cidr}";
+            # };
+
             network = {
-              "format-wifi" = "{essid}  ({signalStrength}%)  ";
-              "format-ethernet" = "󰈀  {ifname}";
-              "tooltip-format" = "󰔣  {ifname} via {gwaddr}";
-              "format-linked" = "󰱓  {ifname} (No IP)";
-              "format-disconnected" = "Disconnected ⚠ {ifname}";
+              "interval" = 5;
+              "format-wifi" = "  󰜮 {bandwidthDownBytes} 󰜷 {bandwidthUpBytes}";
+              "format-ethernet" = "󰈀 󰜮 {bandwidthDownBytes} 󰜷 {bandwidthUpBytes}";
+              "tooltip-format" = "󰔣 {ifname} via {gwaddr}";
+              "format-linked" = "󰱓 {ifname} (No IP)";
+              "format-disconnected" = " Disconnected";
               "format-alt" = "󰛳  {ifname}: {ipaddr}/{cidr}";
             };
+
             pulseaudio = {
               "format" = "{icon}   {volume}%  {format_source}";
               "format-bluetooth" = "{icon} {volume}% {format_source}";

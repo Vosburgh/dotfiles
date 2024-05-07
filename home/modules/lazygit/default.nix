@@ -9,7 +9,8 @@
   
     programs.lazygit = {
     enable = true;
-    gui = {
+    settings = {
+      gui.theme = {
       border = "rounded";
       theme = {
         activeBorderColor = [ "#5ef1ff" ];
@@ -22,6 +23,7 @@
         unstagedChangesColor = [ "#ffbd5e" ];
         defaultFgColor = [ "#ffffff" ];
         };
+      };
       };
     };
 
