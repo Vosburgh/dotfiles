@@ -3,6 +3,7 @@
 {
   imports = [
       outputs.homeModules.hyprlock
+      outputs.homeModules.waybar
   ];
   # Add options for hyprland, a wayland window manager
   options.hyprland.enable = lib.mkEnableOption "hyprland";
@@ -17,6 +18,7 @@
     };
 
     hyprlock.enable = true;
+    waybar.enable = true;
 
     # Extra wayland-specific home configuration
     home = {

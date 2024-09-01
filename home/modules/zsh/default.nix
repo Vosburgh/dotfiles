@@ -51,12 +51,16 @@
 
       oh-my-zsh = {
         enable = true;
-        plugins = [ "thefuck" "git" "fzf"];
+        plugins = [ 
+          # "thefuck" 
+          "git" 
+          "fzf"
+          ];
       };    
     };
 
     home.packages = with pkgs; [
-      thefuck
+      # thefuck # Borked
       fzf
       dig
     ];

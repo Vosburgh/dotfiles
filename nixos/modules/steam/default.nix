@@ -44,9 +44,6 @@
         ];
       };
     };
-    
-    environment.systemPackages = with pkgs; [
-      steamtinkerlaunch
-    ];
+
   };
 }

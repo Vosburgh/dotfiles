@@ -5,8 +5,10 @@
 
   # Configure dunst if desired
   config = lib.mkIf config.dunst.enable {
-    
-    home.packages = with pkgs; [ libnotify ];
+    home.packages = with pkgs; [ 
+      dunst
+      libnotify
+      ];
 
     services.dunst = {
       enable = true;
@@ -73,21 +75,20 @@
         fullscreen_delay_everything = { fullscreen = "delay"; };
 
         urgency_critical = {
-          background = "#" + config.colorScheme.palette.base08 + "55";
+          background = "#" + config.colorScheme.palette.base08 + "85";
           foreground = "#" + config.colorScheme.palette.base00;
           timeout = 0;
         };
         urgency_low = {
-          background = "#" + config.colorScheme.palette.base01 + "55";
+          background = "#" + config.colorScheme.palette.base01 + "85";
           foreground = "#" + config.colorScheme.palette.base05;
-          timeout = 10;
+          timeout = 5;
 
         };
         urgency_normal = {
-          background = "#" + config.colorScheme.palette.base01 + "55";
+          background = "#" + config.colorScheme.palette.base01 + "85";
           foreground = "#" + config.colorScheme.palette.base05;
-          timeout = 10;
-
+          timeout = 5;
         };
       };
     };

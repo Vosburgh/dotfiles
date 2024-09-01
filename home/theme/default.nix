@@ -1,4 +1,4 @@
-{ inputs, nix-colors, ... }:
+{ inputs, catppuccin, nix-colors, ... }:
 {
   imports = [
     nix-colors.homeManagerModule
@@ -6,7 +6,7 @@
   ];
 
   colorScheme = inputs.nix-colors.colorSchemes.catppuccin-macchiato;
-  catppuccin.flavour = "macchiato";
+  # catppuccin.flavour = "macchiato";
   # colorScheme = {
   #   slug = "kanagawa";
   #   name = "kanagawa";

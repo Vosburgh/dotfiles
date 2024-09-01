@@ -4,21 +4,19 @@
     ./../theme
     outputs.homeModules.gtk
     outputs.homeModules.dunst
-    outputs.homeModules.hyprland
+    # outputs.homeModules.hyprland
     outputs.homeModules.lazygit
     outputs.homeModules.starship
     outputs.homeModules.neovim
-    outputs.homeModules.waybar
     outputs.homeModules.zsh
   ];
 
   # Custom Modules
   gtk.config.enable = true;
-  hyprland.enable = true;
-  dunst.enable = true;
+  # hyprland.enable = true;
+  # dunst.enable = true;
   starship.enable = true;
   # neovim.enable = true;
-  waybar.enable = true;
   zsh.enable = true;
   lazygit.enable = true;
   
@@ -30,30 +28,35 @@
     packages = with pkgs; [
 
       # Programs
-      beeper
+      # beeper
       bitwarden
-      blender
+      # blender   # Borked due to https://github.com/NixOS/nixpkgs/pull/325292
       btop
       kdePackages.dolphin
-      dunst
-      element-desktop
+      # dunst
+      # element-desktop
       git
       godot_4
-      grimblast
+      # grimblast
       htop
       killall
       kitty
       krita
+      libreoffice-qt
       lutris 
+      nexusmods-app-unfree
       nvtopPackages.amd 
       nwg-look  
       obsidian  
-      pavucontrol 
+      pavucontrol
+      prismlauncher 
       r2modman  
       rofi-wayland
       spotify
+      thunderbird
       vesktop
       vscodium
+      zed-editor
 
       # Utilities
       bat

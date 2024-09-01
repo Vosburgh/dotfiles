@@ -14,7 +14,7 @@
   ];
 
   # Custom Modules
-  hyprland.enable = true;
+  # hyprland.enable = true;
   kdePlasma6.enable = true;
   steam.enable = true;
   syncthing.enable = true;
@@ -44,7 +44,7 @@
       sddm = {
         enable = true;
       };
-      defaultSession = "hyprland";
+      defaultSession = "plasma";
   };
 
   nix.settings = {
@@ -81,40 +81,40 @@
   };
 
   # Mount NAS
-  fileSystems."/mnt/nasburgh/data" = {
-    device = "192.168.50.137:/volume1/data";
-    fsType = "nfs";
-    options = [
-      "x-systemd.automount" 
-      "noauto" 
-      "x-systemd.idle-timeout=60"
-      "x-systemd.device-timeout=5s" 
-      "x-systemd.mount-timeout=5s"
-    ];
-  };
+#  fileSystems."/mnt/nasburgh/data" = {
+#    device = "192.168.50.137:/volume1/data";
+#    fsType = "nfs";
+#    options = [
+#      "x-systemd.automount" 
+#      "noauto" 
+#      "x-systemd.idle-timeout=60"
+#      "x-systemd.device-timeout=5s" 
+#      "x-systemd.mount-timeout=5s"
+#    ];
+#  };
 
-  fileSystems."/mnt/nasburgh/personal" = {
-    device = "192.168.50.137:/volume1/Personal";
-    fsType = "nfs";
-    options = [
-      "x-systemd.automount" 
-      "noauto" 
-      "x-systemd.idle-timeout=60"
-      "x-systemd.device-timeout=5s" 
-      "x-systemd.mount-timeout=5s"
-    ];
-  };
+#  fileSystems."/mnt/nasburgh/personal" = {
+#    device = "192.168.50.137:/volume1/Personal";
+#    fsType = "nfs";
+#    options = [
+#      "x-systemd.automount" 
+#      "noauto" 
+#      "x-systemd.idle-timeout=60"
+#      "x-systemd.device-timeout=5s" 
+#      "x-systemd.mount-timeout=5s"
+#    ];
+#  };
 
 
   # Enable sound
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  hardware.pulseaudio.enable = false; 
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     audio.enable = true;
     pulse.enable = true;
     wireplumber.enable = true;
+    wireplumber.extraConfig.bluetoothEnchancements = { "monitor.bluez.properties" = { "bluez5.autoswitch-profile" = false; }; };
   };
 
   # User Configure
@@ -217,7 +217,7 @@
   };
 
   # Virtualisation enable
-  virtualisation.virtualbox.host.enable = true;
+  # virtualisation.virtualbox.host.enable = true;
 
   # Enable portals
   xdg.portal = {
