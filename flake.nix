@@ -2,11 +2,11 @@
   description = "A NickOS flake";
 
   inputs = {
-    # Nix 
+    # Nix
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    
+
     # Some serivces/programs defined here exist on NUR only.
-    nur.url = "github:nix-community/NUR"; 
+    nur.url = "github:nix-community/NUR";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,22 +18,22 @@
       flake = false;
     };
 
-    # Hyprland
-    hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-      # url = "github:hyprwm/hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hyprwm-contrib = {
-      url = "github:hyprwm/contrib";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-    hyprland-portal.url = "github:hyprwm/xdg-desktop-portal-hyprland";
-    hyprlock.url = "github:hyprwm/Hyprlock";
+    # # Hyprland
+    # hyprland = {
+    #   url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    #   # url = "github:hyprwm/hyprland";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    # hyprwm-contrib = {
+    #   url = "github:hyprwm/contrib";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    # hyprland-plugins = {
+    #   url = "github:hyprwm/hyprland-plugins";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
+    # hyprland-portal.url = "github:hyprwm/xdg-desktop-portal-hyprland";
+    # hyprlock.url = "github:hyprwm/Hyprlock";
 
     # Misc
     nix-colors.url = "github:misterio77/nix-colors";
@@ -41,7 +41,9 @@
   };
   outputs = inputs@{ self, nixpkgs, nix-colors, catppuccin, home-manager, ... }:
     let
-      inherit (self) outputs;
+    	system = "x86_64-linux";
+     	pkgs = nixpkgs.legacyPackages.${system};
+      	inherit (self) outputs;
     in
     {
 
@@ -55,28 +57,39 @@
       artorias = inputs.nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs outputs nix-colors; };
         modules = [
-          inputs.hyprland.nixosModules.default
+          # inputs.hyprland.nixosModules.default
           ./nixos/configurations/configuration.nix
-        ];
-      };
-    };
 
-    homeConfigurations = {
-      "nick@artorias" = inputs.home-manager.lib.homeManagerConfiguration {
-        pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs nix-colors catppuccin; };
-        modules = [
-          
-          ./home/configurations/configuration.nix
+          home-manager.nixosModules.home-manager
           {
-            home = {
-              packages = [
-                inputs.home-manager.packages.x86_64-linux.home-manager
-              ];
+          	home-manager =
+           	{
+            	extraSpecialArgs = {inherit inputs outputs nix-colors catppuccin; };
+            	useGlobalPkgs = true;
+             	useUserPackages = true;
+              	users.nick = import ./home/configurations/configuration.nix;
             };
           }
         ];
       };
     };
-  }; 
+
+    # homeConfigurations = {
+    #   "nick@artorias" = inputs.home-manager.lib.homeManagerConfiguration {
+    #     pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+    #     extraSpecialArgs = {inherit inputs outputs nix-colors catppuccin; };
+    #     modules = [
+
+    #       ./home/configurations/configuration.nix
+    #       # {
+    #       #   home = {
+    #       #     packages = [
+    #       #       inputs.home-manager.packages.x86_64-linux.home-manager
+    #       #     ];
+    #       #   };
+    #       # }
+    #     ];
+    #   };
+    # };
+  };
 }

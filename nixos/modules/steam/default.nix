@@ -25,7 +25,8 @@
       gamescopeSession.enable = true;
 
     };
-
+    # Open port for LAN transfers
+    networking.firewall.allowedTCPPorts = [ 27040 ];
     # Enable Gamemode optimisation
     programs.gamemode.enable = true;
 

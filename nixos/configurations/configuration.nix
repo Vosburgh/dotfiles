@@ -4,13 +4,12 @@
 
   # Imports
   imports = [
-    outputs.nixosModules.hyprland
+    ./bootloader.nix
+    ./hardware-configuration.nix
     outputs.nixosModules.kdeplasma6
     outputs.nixosModules.steam
     outputs.nixosModules.syncthing
-    outputs.nixosModules.sunshine
-    ./bootloader.nix
-    ./hardware-configuration.nix
+    inputs.home-manager.nixosModules.default
   ];
 
   # Custom Modules
@@ -18,16 +17,16 @@
   kdePlasma6.enable = true;
   steam.enable = true;
   syncthing.enable = true;
-  sunshine.enable = true;
+  # sunshine.enable = true;
 
   # Define your hostname.
-  networking.hostName = "artorias"; 
+  networking.hostName = "artorias";
 
   # Specify kernel to use
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Set your time zone.
-  time.timeZone = "America/Vancouver";
+  time.timeZone = "Japan";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_CA.UTF-8";
@@ -39,7 +38,7 @@
     xkb.layout = "us";
     xkb.variant = "";
     };
-  
+
   services.displayManager = {
       sddm = {
         enable = true;
@@ -51,13 +50,13 @@
     # Enable flakes and 'nix' command
     experimental-features = "nix-command flakes";
     # Deduplicate and optimize nix store
-    auto-optimise-store = true;
+    # auto-optimise-store = true;
   };
-  
+
 
   #Polkit
   security.polkit.enable = true;
-    systemd = { 
+    systemd = {
     user.services.polkit-kde-authentication-agent-1 = {
       description = "polkit-kde-authentication-agent-1";
       wantedBy = ["graphical-session.target"];
@@ -78,6 +77,7 @@
   # Configure Hardware
   hardware = {
     bluetooth.enable = true;
+    openrazer.enable = true;
   };
 
   # Mount NAS
@@ -85,10 +85,10 @@
 #    device = "192.168.50.137:/volume1/data";
 #    fsType = "nfs";
 #    options = [
-#      "x-systemd.automount" 
-#      "noauto" 
+#      "x-systemd.automount"
+#      "noauto"
 #      "x-systemd.idle-timeout=60"
-#      "x-systemd.device-timeout=5s" 
+#      "x-systemd.device-timeout=5s"
 #      "x-systemd.mount-timeout=5s"
 #    ];
 #  };
@@ -97,42 +97,78 @@
 #    device = "192.168.50.137:/volume1/Personal";
 #    fsType = "nfs";
 #    options = [
-#      "x-systemd.automount" 
-#      "noauto" 
+#      "x-systemd.automount"
+#      "noauto"
 #      "x-systemd.idle-timeout=60"
-#      "x-systemd.device-timeout=5s" 
+#      "x-systemd.device-timeout=5s"
 #      "x-systemd.mount-timeout=5s"
 #    ];
 #  };
 
 
   # Enable sound
-  hardware.pulseaudio.enable = false; 
+  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     audio.enable = true;
     pulse.enable = true;
+    # extraConfig = ''
+    #       context.objects = [
+    #         {
+    #           factory = adapter;
+    #           args = {
+    #             node.rules = [
+    #               {
+    #                 matches = [
+    #                   {
+    #                     "media.class" = "Audio/Source"; # Matches all input devices
+    #                   }
+    #                 ];
+    #                 actions = {
+    #                   "update-props" = {
+    #                     "audio.processing.disable-agc" = true;
+    #                   };
+    #                 };
+    #               }
+    #             ];
+    #           };
+    #         }
+    #       ];
+    #     '';
+
     wireplumber.enable = true;
-    wireplumber.extraConfig.bluetoothEnchancements = { "monitor.bluez.properties" = { "bluez5.autoswitch-profile" = false; }; };
+    wireplumber.extraConfig = {
+        "bluez-monitor.properties" = {
+          "bluez5.autoswitch-profile" = false;
+          "bluez5.enable-hsp" = false;
+          "bluez5.enable-hfp" = false;
+          "bluez5.roles" = [ "a2dp_sink" "a2dp_source" ];  # Configure roles
+        };
+      };
+
+          # ["bluez5.enable-sbc-xq"] = true,
+          # ["bluez5.enable-msbc"] = true,
+          # ["bluez5.enable-hw-volume"] = true,
+    # wireplumber.extraConfig.bluetoothEnchancements = { "monitor.bluez.properties" = { "bluez5.autoswitch-profile" = false; }; };
   };
 
   # User Configure
   users.users.nick = {
     isNormalUser = true;
     description = "Nick Vosburgh";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "openrazer" "plugdev"];
     shell = pkgs.zsh;
   };
-  
-  # Garbage collection
-  nix.gc = {
-  automatic = true;
-  dates = "daily";
-  options = "--delete-older-than 7d"; 
-};
 
-  
+  # Garbage collection
+#   nix.gc = {
+#   # automatic = true;
+#   # dates = "daily";
+#   # options = "--delete-older-than 7d";
+# };
+
+
   # Configure environment
   environment = {
     systemPackages = with pkgs; [
@@ -142,6 +178,8 @@
       git
       git-lfs
       keyutils
+      openrazer-daemon
+      polychromatic
       wireguard-tools
       xwaylandvideobridge
     ];
@@ -151,7 +189,7 @@
   fonts = {
     packages = with pkgs; [
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       noto-fonts-emoji
       source-han-sans
       source-han-serif
@@ -164,7 +202,8 @@
       dina-font
       ubuntu_font_family
       # nerdfonts
-      (nerdfonts.override { fonts = [ "FiraCode" ]; })
+      nerd-fonts.fira-code
+      # (nerdfonts.override { fonts = [ "FiraCode" ]; })
     ];
 
     # Enable default fonts
@@ -187,7 +226,7 @@
   programs = {
     # Enable firefox
     firefox.enable = true;
- 
+
     # Needed for anything GTK
     dconf.enable = true;
 
@@ -201,18 +240,18 @@
 
     xfconf.enable = true;
   };
-  
+
   # Configure system-wide services
   services = {
     blueman.enable = true; # Enable bluetooth support and device management (via bluetooth manager)
-   
+
     flatpak.enable = true;  # Enable flatpak for non-nix packages (or temporary broken packages)
-    
+
     gvfs.enable = true; # Mount, trash, and other functionalities
     tumbler.enable = true; # Thumbnail support for images
-    
+
     tailscale.enable = true;
-    
+
     printing.enable = true; # Enable CUPS to print documents
   };
 
@@ -234,7 +273,7 @@
     # Get location from geoclue
     # TODO: Doesn't work
   location.provider = "geoclue2";
-  
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

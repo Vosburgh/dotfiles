@@ -19,7 +19,7 @@
   # neovim.enable = true;
   zsh.enable = true;
   lazygit.enable = true;
-  
+
   home = {
     username = "nick";
     homeDirectory = "/home/nick";
@@ -30,6 +30,7 @@
       # Programs
       # beeper
       bitwarden
+      blender
       # blender   # Borked due to https://github.com/NixOS/nixpkgs/pull/325292
       btop
       kdePackages.dolphin
@@ -43,14 +44,17 @@
       kitty
       krita
       libreoffice-qt
-      lutris 
+      lutris
+      material-maker
+      mpv
       nexusmods-app-unfree
-      nvtopPackages.amd 
-      nwg-look  
-      obsidian  
+      nvtopPackages.amd
+      nwg-look
+      obs-studio
+      obsidian
       pavucontrol
-      prismlauncher 
-      r2modman  
+      prismlauncher
+      r2modman
       rofi-wayland
       spotify
       thunderbird
@@ -72,6 +76,7 @@
       wev # wayland event viewer
       tree
       unzip
+      unrar
 
       # winetricks (all versions)
       winetricks
@@ -87,7 +92,7 @@
   xdg.enable = true;
   xdg.userDirs.enable = true;
   xdg.userDirs.createDirectories = true;
-  
+
   programs = {
     git = {
       enable = true;
@@ -106,6 +111,7 @@
       enable = true;
       indicator = true;
     };
+
 
   };
 }
