@@ -54,6 +54,7 @@
       obsidian
       pavucontrol
       prismlauncher
+      qbittorrent
       r2modman
       rofi-wayland
       spotify
@@ -103,7 +104,9 @@
     # Cheat sheets
     navi.enable = true;
 
-    home-manager.enable = true;
+    home-manager = {
+    	enable = true;
+    };
   };
 
   services = {

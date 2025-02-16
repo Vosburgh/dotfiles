@@ -65,6 +65,7 @@
           	home-manager =
            	{
             	extraSpecialArgs = {inherit inputs outputs nix-colors catppuccin; };
+            	backupFileExtension = "backup";
             	useGlobalPkgs = true;
              	useUserPackages = true;
               	users.nick = import ./home/configurations/configuration.nix;
